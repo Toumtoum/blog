@@ -57,8 +57,21 @@
          </div>
            <button type="submit" class="btn btn-default">ENVOYER</button>
        </form>
-       <div class="display box"></div>
-      </div>
+
+       <?php
+       $displayComment = $bdd -> prepare('SELECT * FROM commentaires WHERE id=:id ORDER BY id DESC ');
+       $displayComment -> execute(array('id' => $_GET['billet']));
+       while ($display = $displayComment -> fetch()) {
+        ?>
+         <div class="display box">
+          <h6>Posté le <?php echo $display['dateCommentaire'] ?> Par <?php echo $display['auteur'] ?></h4>
+          <p><?php echo $display['commentaire'];?></p><hr>
+         </div>
+      <?php
+       };
+      ?>
+
+    </div>
 
         <?php include 'footer.php' ?>
      </div>
