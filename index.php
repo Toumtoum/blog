@@ -18,6 +18,39 @@
 
     </head>
     <body>
+      <div class="page">
+        <?php include 'header.php'; ?>
+        <?php include 'aside.php'; ?>
+
+           <div class="col-md-8"><!--Posts-->
+             <?php
+
+             try{
+               $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root' , 'qX7-xM4-z6z-vPb',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+             }
+             catch (Exception $e)
+             {
+               die ('Erreur : ' .$e->getMessage());
+             }
+             $addArticle = $bdd -> query('SELECT titre, contenu, id, DATE_FORMAT(dateCreation, "%d/%m/%Y") AS date FROM billets');
+             while($display = $addArticle -> fetch()){
+               ?>
+               <article>
+                 <h2><?php echo $display['titre'] ?></h2>
+                   <h4>Posté le <?php echo $display['date'] ?></h4>
+                   <p class="lead"><?php echo substr($display['contenu'],0,200) . '...';?></p><br/>
+                   <a href="articles.php?billet=<?php echo $display['id']; ?>">LIRE LA SUITE</a></div>
+                   <hr>
+               </article>
+             <?php
+             }
+             ?>
+           </div>
+         </div>
+       </div>
+      <?php include 'footer.php' ?>
+   </div> <!--fin de la page-->
+
 
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

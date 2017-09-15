@@ -1,0 +1,80 @@
+html, body { height: 100% }
+
+
+.page {
+	min-height: 100%;
+	position: relative;
+}
+
+.box {
+  border: 1px red dotted;
+}
+
+.container {
+  max-width: 1000px;
+  padding-bottom: 50px;
+}
+
+.profil p{
+  font-size: 11px;
+}
+
+.profil aside {
+  text-align: center;
+}
+
+.profil aside ul{
+  list-style: none;
+  padding : 0px;
+}
+
+.profil aside ul li{
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+footer {
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer p{
+	display: inline-block;
+	margin-left: 8px;
+	color: #777;
+	text-align: right;
+	font-style: italic;
+}
+
+#Date{
+display: inline-block;
+margin-left: 8px;
+margin-bottom: 8px;
+margin-top: 8px;
+color: #777;
+font-style: italic;
+}
+
+.display{
+width: 750px;
+font-size: 14px;
+line-height: 1.42857143;
+color: #555;
+background-color: #fff;
+background-image: none;
+border: 1px solid #ccc;
+border-radius: 4px;
+
+}
+
+.comments{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
