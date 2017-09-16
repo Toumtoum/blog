@@ -34,19 +34,17 @@
         $addArticle = $bdd -> prepare('SELECT titre, contenu, DATE_FORMAT(dateCreation, "%d/%m/%Y") AS date FROM billets WHERE id = :id');
         $addArticle -> execute(array('id' => $_GET['billet']));
         $display = $addArticle -> fetch();
-
         ?>
           <article>
             <h2><?php echo $display['titre'] ?></h2>
               <h4>Posté le <?php echo $display['date'] ?></h4>
-              <p class="lead"><?php echo $display['contenu'];?></p><br/>
+              <p class="lead"><?php echo $display['contenu'];?></p>
               <a href="index.php">RETOUR À L'ACCEUIL</a></div>
               <hr>
           </article>
 
-
       <div class="comments">
-        <form action= "" method="post">
+        <form action= "addBdd.php" method="post">
          <div class="form-group">
            <label>PSEUDO</label>
            <input type="text" class="form-control" name="pseudo"/>
@@ -55,21 +53,23 @@
            <label>MESSAGE</label>
            <textarea class="form-control" rows="3" name="message"></textarea>
          </div>
+           <input type="hidden" name="id" value="<?php echo $_GET['billet'];?>" />
            <button type="submit" class="btn btn-default">ENVOYER</button>
        </form>
-
+       <div class="display box">
        <?php
-       $displayComment = $bdd -> prepare('SELECT * FROM commentaires WHERE id=:id ORDER BY id DESC ');
+       $displayComment = $bdd -> prepare('SELECT * FROM commentaires WHERE idBillet=:id ORDER BY id DESC ');
        $displayComment -> execute(array('id' => $_GET['billet']));
        while ($display = $displayComment -> fetch()) {
         ?>
-         <div class="display box">
+
           <h6>Posté le <?php echo $display['dateCommentaire'] ?> Par <?php echo $display['auteur'] ?></h4>
           <p><?php echo $display['commentaire'];?></p><hr>
-         </div>
+
       <?php
        };
       ?>
+      </div>
 
     </div>
 

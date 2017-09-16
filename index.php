@@ -38,12 +38,13 @@
                <article>
                  <h2><?php echo $display['titre'] ?></h2>
                    <h4>Posté le <?php echo $display['date'] ?></h4>
-                   <p class="lead"><?php echo substr($display['contenu'],0,200) . '...';?></p><br/>
-                   <a href="articles.php?billet=<?php echo $display['id']; ?>">LIRE LA SUITE</a></div>
+                   <p class="lead"><?php echo substr($display['contenu'],0,200) . '...';?></p>
+                   <a href="articles.php?billet=<?php echo $display['id']; ?>">LIRE LA SUITE</a>
                    <hr>
                </article>
              <?php
              }
+             $addArticle->closeCursor();
              ?>
            </div>
          </div>
