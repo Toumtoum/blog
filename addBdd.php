@@ -7,7 +7,7 @@ catch (Exception $e)
   die ('Erreur : ' .$e->getMessage());
 }
 
-$addBdd = $bdd->prepare('INSERT INTO commentaires (auteur,commentaire,idBillet) Values(:pseudo , :message, :id)');
+$addBdd = $bdd->prepare('INSERT INTO commentaires (auteur,commentaire,idBillet,dateCommentaire) Values(:pseudo , :message, :id, now())');
 if(!empty($_POST['pseudo']) && !empty($_POST['message'])){
   $addBdd->execute(array(
   'pseudo'=> strip_tags($_POST['pseudo']),

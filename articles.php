@@ -22,26 +22,26 @@
         <?php include 'header.php'; ?>
         <?php include 'aside.php'; ?>
 
-        <?php
+          <?php
 
-        try{
-          $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root' , 'qX7-xM4-z6z-vPb',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        }
-        catch (Exception $e)
-        {
-          die ('Erreur : ' .$e->getMessage());
-        }
-        $addArticle = $bdd -> prepare('SELECT titre, contenu, DATE_FORMAT(dateCreation, "%d/%m/%Y") AS date FROM billets WHERE id = :id');
-        $addArticle -> execute(array('id' => $_GET['billet']));
-        $display = $addArticle -> fetch();
-        ?>
-          <article>
-            <h2><?php echo $display['titre'] ?></h2>
-              <h4>Posté le <?php echo $display['date'] ?></h4>
-              <p class="lead"><?php echo $display['contenu'];?></p>
-              <a href="index.php">RETOUR À L'ACCEUIL</a></div>
-              <hr>
-          </article>
+          try{
+            $bdd = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root' , 'qX7-xM4-z6z-vPb',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+          }
+          catch (Exception $e)
+          {
+            die ('Erreur : ' .$e->getMessage());
+          }
+          $addArticle = $bdd -> prepare('SELECT titre, contenu, DATE_FORMAT(dateCreation, "%d/%m/%Y") AS date FROM billets WHERE id = :id');
+          $addArticle -> execute(array('id' => $_GET['billet']));
+          $display = $addArticle -> fetch();
+          ?>
+            <article class="col-md-8">
+              <h2><?php echo $display['titre'] ?></h2>
+                <h4>Posté le <?php echo $display['date'] ?></h4>
+                <p class="lead"><?php echo $display['contenu'];?></p>
+                <a href="index.php">RETOUR À L'ACCEUIL</a></div>
+                <hr>
+            </article>
 
       <div class="comments">
         <form action= "addBdd.php" method="post">
@@ -58,12 +58,12 @@
        </form>
        <div class="display box">
        <?php
-       $displayComment = $bdd -> prepare('SELECT * FROM commentaires WHERE idBillet=:id ORDER BY id DESC ');
+       $displayComment = $bdd -> prepare('SELECT auteur, commentaire, DATE_FORMAT(dateCommentaire, "%d/%m/%Y") AS date, DATE_FORMAT(dateCommentaire, "%H:%i") AS heure  FROM commentaires WHERE idBillet=:id ORDER BY id DESC ');
        $displayComment -> execute(array('id' => $_GET['billet']));
        while ($display = $displayComment -> fetch()) {
         ?>
 
-          <h6>Posté le <?php echo $display['dateCommentaire'] ?> Par <?php echo $display['auteur'] ?></h4>
+          <h6>Posté par <?php echo $display['auteur'] ?> le <?php echo $display['date'] ?> à <?php echo $display['heure'] ?> </h4>
           <p><?php echo $display['commentaire'];?></p><hr>
 
       <?php

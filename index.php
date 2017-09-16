@@ -20,6 +20,7 @@
     <body>
       <div class="page">
         <?php include 'header.php'; ?>
+        <div class="container">
         <?php include 'aside.php'; ?>
 
            <div class="col-md-8"><!--Posts-->
